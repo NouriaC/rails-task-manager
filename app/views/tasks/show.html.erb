@@ -1,21 +1,24 @@
 
-<h1><%= @task.title %></h1>
-<h3><%= @task.details %></h3>
-<% if @task.completed %>
-<p><i class="far fa-check-square"></i> <%= 'Task has been completed' %></p>
-<% else %>
-<i class="far fa-square"></i> <%= 'Task is not completed yet' %>
+<%= link_to task_edit_path, class: 'pull-right btn btn-default' do %>
+  <i class="fa fa-pencil"></i> Edit this task
 <% end %>
-<br>
-<br>
-<%= link_to 'Back to list', tasks_path %>
-<br>
-<br>
-<%= link_to 'Edit this task', edit_task_path %>
-<br>
-<br>
-<%= link_to "Delete #{@task.title}",
-            task_path(@task),
-            method: :delete,
-            data: { confirm: "Are you sure?" } %>
+
+<h1><%= @task.title %></h1>
+<p class="well"><%= @task.details %></p>
+
+<% if @task.completed %>
+<i class="far fa-check-square"></i> This task is completed
+<% else %>
+<i class="far fa-square"></i> This task is not completed yet
+<% end %>
+
+<hr>
+
+<%= link_to "Delete #{@task.title}", task_path(@task), method: :delete, data: { confirm: "Are you sure?" } %>
+    <br>
+<%= link_to tasks_path do %>
+<i class="fa fa-history"></i> Back to list
+<% end %>
+
+
 
